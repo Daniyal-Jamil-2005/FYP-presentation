@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Archivo', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-maroon: #35121e;
+  --color-maroon-deep: #230c14;
+  --color-maroon-line: #562130;
+  --color-midnight: #0a0e17;
+  --color-midnight-panel: #12172a;
+  --color-midnight-line: #262d40;
+  --color-crimson: #d8384a;
+  --color-paper: #ffffff;
+  --color-bone: #f6f1ea;
+  --color-bone-dim: #e6d9d6;
+  --color-ash: #c69aa0;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-maroon);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-crimson);
+  color: var(--color-bone);
+}
+
+/* Hide scrollbars until scrolling */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Print: one section per page, keep running head + footer */
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+@media print {
+  html,
+  body {
+    background: var(--color-maroon);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Shrink rem-based type + spacing so a full section fits the shorter
+     A4-landscape shape instead of spilling past the page edge. */
+  html {
+    font-size: 10.5px;
+  }
+  .no-print {
+    display: none !important;
+  }
+  /* Map every section to exactly one A4 landscape page. Content is centered,
+     so any spare room reads as balanced margin rather than a hard crop. */
+  .page {
+    width: 297mm;
+    height: 210mm;
+    min-height: 0 !important;
+    max-height: 210mm;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+    break-inside: avoid;
+  }
+  .page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes swarm-dash {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
